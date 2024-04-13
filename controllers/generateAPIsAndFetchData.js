@@ -1,14 +1,13 @@
 const axios = require('axios');
-const EXTERNAL_API_URL2 = 'https://ug.sk-engine.cloud/hmis/api/events.json?ou=FvewOonC8lS&fields=event&paging=false';
-
 
 // Function to generate API URLs for each event
-async function generateAPIsAndFetchData() {
+async function generateAPIsAndFetchData(API_URL2) {
+
     const username = 'admin';
     const password = 'Nomisr123$$';
     const encodedCredentials = Buffer.from(username + ':' + password).toString('base64');
     try {
-        const response = await axios.get(EXTERNAL_API_URL2, {
+        const response = await axios.get(API_URL2, {
             headers: {
                 'Authorization': 'Basic ' + encodedCredentials,
                 'Content-Type': 'application/json'
@@ -33,11 +32,13 @@ async function generateAPIsAndFetchData() {
 }
 
 // Endpoint to fetch data from the external APIs with basic authentication
-const fetchData = async (req, res) => {    
+const fetchData = async (req, res) => {
+    const { orgUnit } = req.params;
+    const EXTERNAL_API_URL2 = `https://ug.sk-engine.cloud/hmis/api/events.json?ou=${orgUnit}&fields=event&paging=false`;
     try {
         // Fetch data from generated APIs
-        const data = await generateAPIsAndFetchData();
-        console.log('Data successfully retrieved');
+        const data = await generateAPIsAndFetchData(EXTERNAL_API_URL2);
+        console.log('Data successfully retrieved', orgUnit);
         res.json(data);
     } catch (error) {
         console.error('Error fetching data from the external APIs:', error);

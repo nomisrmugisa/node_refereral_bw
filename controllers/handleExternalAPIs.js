@@ -7,13 +7,14 @@ const DATABASE_VERSION = 3;
 const OBJECT_STORE_NAME = 'events';
 
 const EXTERNAL_API_URL1 = 'https://ug.sk-engine.cloud/hmis/api/events.json?event=Q45JrKcYRhw';
-const EXTERNAL_API_URL = 'https://ug.sk-engine.cloud/hmis/api/events.json?ou=FvewOonC8lS&fields=event&paging=false';
 
 
 // Send data to API
 const sendDataToAPI = (req, res) => {
     // Receive values from Access/Angular form fields
-    const { event, name, nin, dob, age, sex, dtD } = req.body;
+    const { event, name, nin, dob, age, sex, dtD, orgUnit } = req.body;
+    
+    const EXTERNAL_API_URL = `https://ug.sk-engine.cloud/hmis/api/events.json?ou=${orgUnit}&fields=event&paging=false`;
     
     // const formattedDOB = format(parse(req.body.dob, 'yyyy-MM-dd', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS');
     // const formatted_dt_death = format(parse(req.body.dtB, 'yyyy-MM-dd', new Date()), 'yyyy-MM-dd\'T\'HH:mm:ss.SSS');
@@ -24,7 +25,7 @@ const sendDataToAPI = (req, res) => {
         "events": [{
                 "programStage": "aKclf7Yl1PE",
                 "programType": "WITH_REGISTRATION",
-                "orgUnit": "FvewOonC8lS",
+                "orgUnit": orgUnit,
                 "program": "vf8dN49jprI",
                 "event": event,
                 "status": "COMPLETED",
@@ -247,5 +248,6 @@ const fetchDataAndSaveToIndexedDB = async (req, res) => {
 module.exports = {
     sendDataToAPI,
     fetchDataFromAPI,
+    
     // fetchDataAndSaveToIndexedDB
 }

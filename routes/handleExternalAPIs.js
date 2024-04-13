@@ -13,7 +13,7 @@ const { checkInternet } = require('../controllers/checkInternetAndICDService')
 
 router.post('/send-data/', sendDataToAPI);
 // router.get('/fetch-data/', fetchDataAndSaveToIndexedDB);
-router.get('/generate-data/', fetchData);
+router.get('/generate-data/:orgUnit', fetchData);
 
 router.get('/internet', checkInternet);
 
