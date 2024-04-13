@@ -1,7 +1,3 @@
-Sure, here's a README template for your GitHub repository:
-
----
-
 # JSON Parser Node API
 
 This Node.js API is designed to parse JSON data from one endpoint to another.
