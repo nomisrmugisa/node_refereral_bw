@@ -158,7 +158,7 @@ const sendDataToAPI = (req, res) => {
     // Call function to post modified JSON to another API endpoint
     // You can use any HTTP client library like axios or request
     // Example with axios:
-    axios.post('https://ug.sk-engine.cloud/hmis/api/events', modifiedJson, 
+    axios.post(EXTERNAL_API_URL, modifiedJson, 
     { headers: { 
         'Authorization': 'Basic ' + encodedCredentials,
         'Content-Type': 'application/json'
