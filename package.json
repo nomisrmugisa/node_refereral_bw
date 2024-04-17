@@ -20,11 +20,7 @@
     "dotenv": "^16.4.5",
     "express": "^4.18.3",
     "idb": "^8.0.0",
-<<<<<<< HEAD
     "morgan": "^1.10.0",
-=======
-    "morgan": "^1.10.0",    
->>>>>>> f8dc3df14d7d2c3534c34c185589c3fef2a32c2b
     "node-cron": "^3.0.3",
     "node-windows": "^1.0.0-beta.8",
     "ping": "^0.4.4",
